@@ -38,8 +38,7 @@ namespace WFDataPanel
 
         private static void ConfigureServices(ServiceCollection services)
         {
-            var teste = Configuration.GetConnectionString("sqlServer");
-            services.AddScoped<IDbConnector>(db => new SqlServerConnector(Configuration.GetConnectionString("sqlServer")));
+            services.AddScoped<IDbConnector>(db => new SqlServerConnector("Server=127.0.0.1,1434;Database=Store;User Id=sa;Password=dataPanel!@#;TrustServerCertificate=true;"));
             var config = new MapperConfiguration(cfg =>
             {
                 cfg.AddProfile(new ModelToEntityProfile());
