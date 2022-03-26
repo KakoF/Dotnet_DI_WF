@@ -14,6 +14,6 @@ namespace Domain.Entities
         public string City { get; private set; }
         public string Country { get; private set; }
         public string Phone { get; private set; }
-        public string Email { get; private set; }
+        public string Fax { get; private set; }
     }
 }

@@ -16,16 +16,13 @@ namespace Data.Implementations
         {
         }
 
-        protected override string InsertQuery => throw new NotImplementedException();
+       
 
-        protected override string InsertQueryReturnInserted => throw new NotImplementedException();
-
-        protected override string UpdateByIdQuery => throw new NotImplementedException();
-
-        protected override string DeleteByIdQuery => throw new NotImplementedException();
-
-        protected override string SelectByIdQuery => throw new NotImplementedException();
-
-        protected override string SelectAllQuery => throw new NotImplementedException();
+        protected override string InsertQuery => $"INSERT INTO [{nameof(Supplier)}] ([{nameof(Supplier.CompanyName)}] ,([{nameof(Supplier.ContactName)}] ,([{nameof(Supplier.ContactTitle)}] ,[{nameof(Supplier.City)}] ,[{nameof(Supplier.Country)}], [{nameof(Supplier.Phone)}], [{nameof(Supplier.Fax)}]) VALUES (@{nameof(Supplier.CompanyName)}, @{nameof(Supplier.ContactName)}, @{nameof(Supplier.ContactTitle)}, @{nameof(Supplier.City)}, @{nameof(Supplier.Country)}, @{nameof(Supplier.Phone)}, @{nameof(Supplier.Fax)})";
+        protected override string InsertQueryReturnInserted => $"INSERT INTO [{nameof(Supplier)}] ([{nameof(Supplier.CompanyName)}] ,([{nameof(Supplier.ContactName)}] ,([{nameof(Supplier.ContactTitle)}] ,[{nameof(Supplier.City)}] ,[{nameof(Supplier.Country)}], [{nameof(Supplier.Phone)}], [{nameof(Supplier.Fax)}])  OUTPUT Inserted.* VALUES (@{nameof(Supplier.CompanyName)}, @{nameof(Supplier.ContactName)}, @{nameof(Supplier.ContactTitle)}, @{nameof(Supplier.City)}, @{nameof(Supplier.Country)}, @{nameof(Supplier.Phone)}, @{nameof(Supplier.Fax)})";
+        protected override string UpdateByIdQuery => $"UPDATE [{nameof(Supplier)}] SET {nameof(Supplier.CompanyName)} = @{nameof(Supplier.CompanyName)}, {nameof(Supplier.ContactName)} = @{nameof(Supplier.ContactName)}, {nameof(Supplier.ContactTitle)} = @{nameof(Supplier.ContactTitle)}, {nameof(Supplier.City)} = @{nameof(Supplier.City)}, {nameof(Supplier.Country)} = @{nameof(Supplier.Country)}, {nameof(Supplier.Phone)} = @{nameof(Supplier.Phone)}, {nameof(Supplier.Fax)} = @{nameof(Supplier.Fax)} WHERE {nameof(Supplier.Id)} = @{nameof(Supplier.Id)}";
+        protected override string DeleteByIdQuery => $"DELETE FROM [{nameof(Supplier)}] WHERE {nameof(Supplier.Id)} = @{nameof(Supplier.Id)}";
+        protected override string SelectAllQuery => $"SELECT * FROM [{nameof(Supplier)}]";
+        protected override string SelectByIdQuery => $"SELECT * FROM [{nameof(Supplier)}] WHERE {nameof(Supplier.Id)} = @{nameof(Supplier.Id)}";
     }
 }

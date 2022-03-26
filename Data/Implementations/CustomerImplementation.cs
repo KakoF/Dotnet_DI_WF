@@ -16,16 +16,11 @@ namespace Data.Implementations
         {
         }
 
-        protected override string InsertQuery => throw new NotImplementedException();
-
-        protected override string InsertQueryReturnInserted => throw new NotImplementedException();
-
-        protected override string UpdateByIdQuery => throw new NotImplementedException();
-
-        protected override string DeleteByIdQuery => throw new NotImplementedException();
-
-        protected override string SelectByIdQuery => throw new NotImplementedException();
-
-        protected override string SelectAllQuery => "SELECT * FROM Customer";
+        protected override string InsertQuery => $"INSERT INTO [{nameof(Customer)}] ([{nameof(Customer.FirstName)}] ,([{nameof(Customer.LastName)}] ,([{nameof(Customer.City)}] ,[{nameof(Customer.Country)}] ,[{nameof(Customer.Phone)}]) VALUES (@{nameof(Customer.FirstName)}, @{nameof(Customer.LastName)}, @{nameof(Customer.City)}, @{nameof(Customer.Country)}, @{nameof(Customer.Phone)})";
+        protected override string InsertQueryReturnInserted => $"INSERT INTO [{nameof(Customer)}] ([{nameof(Customer.FirstName)}] ,([{nameof(Customer.LastName)}] ,([{nameof(Customer.City)}] ,[{nameof(Customer.Country)}] ,[{nameof(Customer.Phone)}]) OUTPUT Inserted.* VALUES (@{nameof(Customer.FirstName)}, @{nameof(Customer.LastName)}, @{nameof(Customer.City)}, @{nameof(Customer.Country)}, @{nameof(Customer.Phone)})"; 
+        protected override string UpdateByIdQuery => $"UPDATE [{nameof(Customer)}] SET {nameof(Customer.FirstName)} = @{nameof(Customer.FirstName)}, {nameof(Customer.LastName)} = @{nameof(Customer.LastName)}, {nameof(Customer.City)} = @{nameof(Customer.City)}, {nameof(Customer.Country)} = @{nameof(Customer.Country)}, {nameof(Customer.Phone)} = @{nameof(Customer.Phone)} WHERE {nameof(Customer.Id)} = @{nameof(Customer.Id)}";
+        protected override string DeleteByIdQuery => $"DELETE FROM [{nameof(Customer)}] WHERE {nameof(Customer.Id)} = @{nameof(Customer.Id)}";
+        protected override string SelectAllQuery => $"SELECT * FROM [{nameof(Customer)}]";
+        protected override string SelectByIdQuery => $"SELECT * FROM [{nameof(Customer)}] WHERE {nameof(Customer.Id)} = @{nameof(Customer.Id)}";
     }
 }

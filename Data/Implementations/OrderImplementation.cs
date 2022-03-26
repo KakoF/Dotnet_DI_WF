@@ -16,16 +16,11 @@ namespace Data.Implementations
         {
         }
 
-        protected override string InsertQuery => throw new NotImplementedException();
-
-        protected override string InsertQueryReturnInserted => throw new NotImplementedException();
-
-        protected override string UpdateByIdQuery => throw new NotImplementedException();
-
-        protected override string DeleteByIdQuery => throw new NotImplementedException();
-
-        protected override string SelectByIdQuery => throw new NotImplementedException();
-
-        protected override string SelectAllQuery => throw new NotImplementedException();
+        protected override string InsertQuery => $"INSERT INTO [{nameof(Order)}] ([{nameof(Order.OrderDate)}] ,([{nameof(Order.OrderNumber)}] ,([{nameof(Order.CustomerId)}] ,[{nameof(Order.Customer)}] ) VALUES (@{nameof(Order.OrderDate)}, @{nameof(Order.OrderNumber)}, @{nameof(Order.CustomerId)}, @{nameof(Order.TotalAmount)})";
+        protected override string InsertQueryReturnInserted => $"INSERT INTO [{nameof(Order)}] ([{nameof(Order.OrderDate)}] ,([{nameof(Order.OrderNumber)}] ,([{nameof(Order.CustomerId)}] ,[{nameof(Order.Customer)}]) OUTPUT Inserted.* VALUES (@{nameof(Order.OrderDate)}, @{nameof(Order.OrderNumber)}, @{nameof(Order.CustomerId)}, @{nameof(Order.TotalAmount)})";
+        protected override string UpdateByIdQuery => $"UPDATE [{nameof(Order)}] SET {nameof(Order.OrderDate)} = @{nameof(Order.OrderDate)}, {nameof(Order.OrderNumber)} = @{nameof(Order.OrderNumber)}, {nameof(Order.CustomerId)} = @{nameof(Order.CustomerId)}, {nameof(Order.Customer)} = @{nameof(Order.Customer)} WHERE {nameof(Order.Id)} = @{nameof(Order.Id)}";
+        protected override string DeleteByIdQuery => $"DELETE FROM [{nameof(Order)}] WHERE {nameof(Order.Id)} = @{nameof(Order.Id)}";
+        protected override string SelectAllQuery => $"SELECT * FROM [{nameof(Order)}]";
+        protected override string SelectByIdQuery => $"SELECT * FROM [{nameof(Order)}] WHERE {nameof(Order.Id)} = @{nameof(Order.Id)}";
     }
 }

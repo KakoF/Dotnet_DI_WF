@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Domain.Models
 {
     public abstract class BaseModel
     {
         public int Id { get; set; }
+        internal List<string> _errors;
+        public IReadOnlyCollection<string> Errors => _errors;
+        public abstract bool Validate();
     }
 }

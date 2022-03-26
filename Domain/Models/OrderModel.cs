@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Domain.Exceptions;
+using Domain.Validators;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,5 +15,21 @@ namespace Domain.Models
         public int CustomerId { get; set; }
         public CustomerModel Customer { get; set; }
         public decimal TotalAmount { get; set; }
+
+        public override bool Validate()
+        {
+            var validator = new OrderValidator();
+            var validation = validator.Validate(this);
+
+            if (!validation.IsValid)
+            {
+                foreach (var error in validation.Errors)
+                    _errors.Add(error.ErrorMessage);
+
+                throw new DomainException($"Alguns campos estão inválidos!", _errors);
+            }
+
+            return true;
+        }
     }
 }
